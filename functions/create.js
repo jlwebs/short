@@ -56,7 +56,7 @@ export async function onRequest(context) {
     // 验证密码
     const accessPassword = context.env.ACCESS_PASSWORD || '';
     if (!password || password !== accessPassword.trim()) {
-        return Response.json({ message: '访问密码错误:'+password+":"+ accessPassword.trim()}, {
+        return Response.json({ message: '访问密码错误:'+password+" :" + len(accessPassword.trim())}, {
             headers: corsHeaders,
             status: 403
         });

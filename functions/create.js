@@ -46,19 +46,21 @@ export async function onRequest(context) {
     const timedata = new Date();
     const formattedDate = new Intl.DateTimeFormat('zh-CN', options).format(timedata);
     const { url, slug, expiry, password } = await request.json(); // 获取过期时间
-        // 验证密码
-        const accessPassword = context.env.ACCESS_PASSWORD || '';
-        if (!password || password !== accessPassword.trim()) {
-            return Response.json({ message: '访问密码错误' }, {
-                headers: corsHeaders,
-                status: 403
-            });
-        }
+
     const corsHeaders = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Max-Age': '86400', // 24 hours
     };
+
+    // 验证密码
+    const accessPassword = context.env.ACCESS_PASSWORD || '';
+    if (!password || password !== accessPassword.trim()) {
+        return Response.json({ message: '访问密码错误' }, {
+            headers: corsHeaders,
+            status: 403
+        });
+    }
     if (!url) return Response.json({ message: 'Missing required parameter: url.' });
 
     // url格式检查

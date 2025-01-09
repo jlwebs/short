@@ -55,11 +55,14 @@ export async function onRequest(context) {
 
     // 验证密码
     const accessPassword = context.env.ACCESS_PASSWORD || '';
-    if (!password || password !== accessPassword || (accessPassword.trim()).length == 0) {
-        return Response.json({ message: '访问密码错误:'+password+" :" + (accessPassword.trim()).length}, {
-            headers: corsHeaders,
-            status: 403
-        });
+    if (!password || password !== accessPassword ) {
+        if (!(accessPassword.trim()).length == 0) { // 密码为空白字符串代表不设置密码
+            return Response.json({ message: '访问密码错误:'+password+" :" + (accessPassword.trim()).length}, {
+                headers: corsHeaders,
+                status: 403
+            });
+        }
+
     }
     if (!url) return Response.json({ message: 'Missing required parameter: url.' });
 

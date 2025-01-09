@@ -47,7 +47,8 @@ export async function onRequest(context) {
     const formattedDate = new Intl.DateTimeFormat('zh-CN', options).format(timedata);
     const { url, slug, expiry, password } = await request.json(); // 获取过期时间
         // 验证密码
-        if (!password || password !== context.env.ACCESS_PASSWORD) {
+        const accessPassword = context.env.ACCESS_PASSWORD || '';
+        if (!password || password !== accessPassword.trim()) {
             return Response.json({ message: '访问密码错误' }, {
                 headers: corsHeaders,
                 status: 403

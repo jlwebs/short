@@ -15,7 +15,7 @@
       /* 设置默认字体 */
       color: #333;
       /* 设置默认文本颜色 */
-    }
+  }
 
     main {
       display: flex;
@@ -103,6 +103,14 @@
   <main>
     <div class="container">
       <h1 class="text-3xl font-bold text-gray-800">吨吨吨吨 短连接生成</h1>
+        <!-- 居中图片块 -->
+        <div class="flex justify-center my-4">
+          <img 
+            src="asset/img/logo.png" 
+            alt="logo" 
+            class="w-48 h-44 rounded-lg shadow-lg object-cover"
+          />
+        </div>
       <div x-data="app" x-cloak>
         <p x-show.transition.opacity="alert" :class="alert?.type" x-text="alert?.message"></p>
         <div class="mb-4">
@@ -143,7 +151,7 @@
     </div>
   </main>
   <footer class="text-gray-600">
-      <a href="https://www.wangwangit.com">吨吨吨吨 短连接生成</a>
+      <a href="https://blog.970909.xyz">blog</a>
   </footer>
 
   <script src="asset/js/alpine.js"></script>

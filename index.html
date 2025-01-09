@@ -165,8 +165,7 @@
         }
         
         if (!this.password) {
-          this.alert = { type: 'error', message: '请输入访问密码。' }
-          return
+          this.password = ''
         }
 
         if (this.isValidated()) {
